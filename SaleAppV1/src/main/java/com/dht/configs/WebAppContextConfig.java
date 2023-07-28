@@ -42,18 +42,24 @@ import org.springframework.web.servlet.view.JstlView;
 })
 @PropertySource("classpath:configs.properties")
 public class WebAppContextConfig implements WebMvcConfigurer {
-    
+
     @Autowired
     private Environment env;
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-    
+
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new CategoryFormatter());
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/resources/js/");
+
     }
 
 //    @Bean
@@ -75,12 +81,12 @@ public class WebAppContextConfig implements WebMvcConfigurer {
                         "secure", true));
         return cloudinary;
     }
-    
+
     @Bean
     public SimpleDateFormat simpleDateFormat() {
         return new SimpleDateFormat("yyyy-MM-dd");
     }
-    
+
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver
@@ -88,15 +94,15 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         resolver.setDefaultEncoding("UTF-8");
         return resolver;
     }
-    
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource m = new ResourceBundleMessageSource();
         m.setBasenames("messages");
         return m;
-        
+
     }
-    
+
     @Bean(name = "validator")
     public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean bean
@@ -104,12 +110,10 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
-    
+
     @Override
     public Validator getValidator() {
         return validator();
     }
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
-        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/resources/js");
-    }
+
 }

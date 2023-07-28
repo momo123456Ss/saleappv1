@@ -4,3 +4,15 @@
  */
 
 
+function delPro(path, id) {
+    if(confirm("Delete this!")){
+        fetch(path, {
+            method: "delete"
+        }).then(res => {
+            if (res.status === 204)
+                location.reload();
+            else
+                alert("Something wrong!");
+        });
+    }
+}
