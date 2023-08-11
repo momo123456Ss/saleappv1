@@ -25,8 +25,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
+
 
 /**
  *
@@ -59,8 +58,9 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/resources/js/");
-
     }
+    
+    
 
 //    @Bean
 //    public InternalResourceViewResolver internalResourceViewResolver() {
@@ -83,11 +83,6 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public SimpleDateFormat simpleDateFormat() {
-        return new SimpleDateFormat("yyyy-MM-dd");
-    }
-
-    @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver
                 = new CommonsMultipartResolver();
@@ -98,9 +93,10 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource m = new ResourceBundleMessageSource();
-        m.setBasenames("messages");
-        return m;
 
+        m.setBasenames("messages");
+
+        return m;
     }
 
     @Bean(name = "validator")
@@ -115,5 +111,4 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public Validator getValidator() {
         return validator();
     }
-
 }

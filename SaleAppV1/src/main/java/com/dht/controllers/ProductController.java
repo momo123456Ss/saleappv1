@@ -22,28 +22,28 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ProductController {
-
     @Autowired
     private ProductService proService;
-
+    
     @GetMapping("/products")
     public String list(Model model) {
         model.addAttribute("product", new Product());
         return "products";
     }
+    
     @GetMapping("/products/{id}")
-    public String update(Model model,@PathVariable(value = "id") int id) {
+    public String update(Model model, @PathVariable(value = "id") int id)  {
         model.addAttribute("product", this.proService.getProductById(id));
         return "products";
     }
+    
     @PostMapping("/products")
-    public String add(@ModelAttribute(value = "product") @Valid Product p, BindingResult rs) {
-        if (!rs.hasErrors()) {
-            if (proService.addOrUpdateProduct(p) == true) {
+    public String add(@ModelAttribute(value = "product") @Valid Product p, 
+            BindingResult rs) {
+        if (!rs.hasErrors())
+            if (proService.addOrUpdateProduct(p) == true)
                 return "redirect:/";
-            }
-        }
-
+        
         return "products";
     }
 }
