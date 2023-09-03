@@ -10,7 +10,10 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+<<<<<<< HEAD
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +27,11 @@ public class UserReppositoryImpl implements UserReppository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
+<<<<<<< HEAD
     @Autowired
     private BCryptPasswordEncoder passEncoder;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 
     @Override
     public User getUserByUsername(String username) {
@@ -36,6 +42,7 @@ public class UserReppositoryImpl implements UserReppository {
         return (User) q.getSingleResult();
     }
 
+<<<<<<< HEAD
     @Override
     public boolean authUser(String username, String password) {
         User  u = this.getUserByUsername(username);
@@ -51,4 +58,6 @@ public class UserReppositoryImpl implements UserReppository {
         return u;
     }
 
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 }

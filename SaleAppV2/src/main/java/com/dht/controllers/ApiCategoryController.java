@@ -10,7 +10,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.CrossOrigin;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +29,10 @@ public class ApiCategoryController {
     private CategoryService cateService;
     
     @GetMapping("/categories")
+<<<<<<< HEAD
     @CrossOrigin
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
     public ResponseEntity<List<Category>> list() {
         return new ResponseEntity<>(this.cateService.getCates(), HttpStatus.OK);
     }

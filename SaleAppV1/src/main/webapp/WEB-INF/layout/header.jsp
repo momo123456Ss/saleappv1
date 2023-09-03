@@ -34,7 +34,11 @@
                         </c:when>
                         <c:otherwise>
                             <li class="nav-item">
+<<<<<<< HEAD
                                 <a class="nav-link" href="<c:url value="/login" />">Đăng nhập</a>
+=======
+                                <a class="nav-link" href="<c:url value="/login" />">Dang nhap</a>
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
                             </li>
                         </c:otherwise>
                     </c:choose>

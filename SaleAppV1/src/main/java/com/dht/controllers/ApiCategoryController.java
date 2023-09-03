@@ -25,7 +25,11 @@ public class ApiCategoryController {
     @Autowired
     public CategoryService cateService;
     
+<<<<<<< HEAD
     @GetMapping("/categories/")
+=======
+    @GetMapping("/categories")
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
     @CrossOrigin
     public ResponseEntity<List<Category>> list() {
         return new ResponseEntity<>(this.cateService.getCategories(), HttpStatus.OK);

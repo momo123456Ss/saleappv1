@@ -4,18 +4,26 @@
  */
 package com.dht.controllers;
 
+<<<<<<< HEAD
 import com.dht.pojo.Comment;
 import com.dht.pojo.Product;
 import com.dht.service.CategoryService;
 import com.dht.service.CommentService;
+=======
+import com.dht.pojo.Product;
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 import com.dht.service.ProductService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+<<<<<<< HEAD
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jca.cci.core.support.CommAreaRecord;
+=======
+import org.springframework.http.ResponseEntity;
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +32,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestPart;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,16 +49,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class ApiProductController {
     @Autowired
     private ProductService prodService;
+<<<<<<< HEAD
     @Autowired
     private CategoryService cateService;
     @Autowired
     private CommentService commentService;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
     
     @DeleteMapping("/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "id") int id) {
         this.prodService.deleteProduct(id);
     }
+<<<<<<< HEAD
     
     @RequestMapping("/products/")
     @CrossOrigin
@@ -89,5 +104,11 @@ public class ApiProductController {
         Comment c = this.commentService.addComment(comment);
         
         return new ResponseEntity<>(c, HttpStatus.CREATED);
+=======
+    @GetMapping("/products")
+    @CrossOrigin
+    public ResponseEntity<List<Product>> list(@RequestParam Map<String, String> params) {
+        return new ResponseEntity<>(this.prodService.getProducts(params), HttpStatus.OK);
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
     }
 }

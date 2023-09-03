@@ -81,11 +81,15 @@ public class Product implements Serializable {
     private Set<ProdTag> prodTagSet;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Category categoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
+<<<<<<< HEAD
     
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
     @Transient
     private MultipartFile file;
 

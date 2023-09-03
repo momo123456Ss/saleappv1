@@ -34,10 +34,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserReppository userRepo;
+<<<<<<< HEAD
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private Cloudinary cloudinary;
+=======
+>>>>>>> d1ce47b755de74e350e80f0ab8bb10f31db8bc68
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
