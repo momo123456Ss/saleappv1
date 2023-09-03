@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
-
     @Autowired
     private ProductRepository productRepo;
     @Autowired
@@ -41,8 +40,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean addOrUpdateProduct(Product p) {
-        // p.setImage("https://res.cloudinary.com/dxxwcby8l/image/upload/v1647248652/dkeolz3ghc0eino87iec.jpg");
-
+       // p.setImage("https://res.cloudinary.com/dxxwcby8l/image/upload/v1647248652/dkeolz3ghc0eino87iec.jpg");
+        
         if (!p.getFile().isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(p.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
@@ -51,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
                 Logger.getLogger(ProductServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return this.productRepo.addOrUpdateProduct(p);
     }
 
@@ -64,5 +63,5 @@ public class ProductServiceImpl implements ProductService {
     public boolean deleteProduct(int id) {
         return this.productRepo.deleteProduct(id);
     }
-
+    
 }

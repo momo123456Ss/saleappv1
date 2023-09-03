@@ -127,7 +127,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         try {
             session.delete(p);
             return true;
-        }catch(HibernateException ex){
+        } catch (HibernateException ex) {
             ex.printStackTrace();
             return false;
         }

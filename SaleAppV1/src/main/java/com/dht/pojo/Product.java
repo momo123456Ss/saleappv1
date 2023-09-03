@@ -4,6 +4,7 @@
  */
 package com.dht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -23,8 +24,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -57,16 +56,13 @@ public class Product implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50, message = "{product.name.sizeMsg}")
+    @NotNull(message = "{product.name.notNull}")
+    @Size(min = 5, max = 50, message = "{product.name.lenErr}")
     @Column(name = "name")
     private String name;
-    @Size(max = 255)
+    @Size(min = 10, max = 255, message = "{product.desc.lenErr}")
     @Column(name = "description")
     private String description;
-    @NotNull(message = "{product.price.notNullMsg}")
-    @Min(value = 100000, message = "{product.price.minMsg}")
-    @Max(value = 1000000000, message = "{product.price.maxMsg}")
     @Column(name = "price")
     private Long price;
     @Size(max = 50)
@@ -81,14 +77,15 @@ public class Product implements Serializable {
     @Column(name = "active")
     private Boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @JsonIgnore
     private Set<ProdTag> prodTagSet;
-    @NotNull(message = "{product.category.notNullMsg}")
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
-
+    
     @Transient
     private MultipartFile file;
 
@@ -208,10 +205,7 @@ public class Product implements Serializable {
             return false;
         }
         Product other = (Product) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
@@ -232,5 +226,5 @@ public class Product implements Serializable {
     public void setFile(MultipartFile file) {
         this.file = file;
     }
-
+    
 }

@@ -4,14 +4,14 @@
  */
 package com.dht.repository;
 
-import com.dht.pojo.User;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import com.dht.pojo.Comment;
+import java.util.List;
 
 /**
  *
- * @author HOME
+ * @author huu-thanhduong
  */
-public interface UserRepository {
-    User getUserByUserName(String username);
+public interface CommentRepository {
+    List<Comment> getComments(int productId);
+    Comment addComment(Comment c);
 }

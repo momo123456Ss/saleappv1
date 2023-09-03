@@ -15,21 +15,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author HOME
+ * @author admin
  */
 @Repository
 @Transactional
 public class UserRepositoryImpl implements UserRepository {
-
+    
     @Autowired
     private LocalSessionFactoryBean factory;
 
     @Override
-    public User getUserByUserName(String username) {
-        Session session = this.factory.getObject().getCurrentSession();
-        Query q = session.createNamedQuery("FROM User WHERE username:un");
+    public User getUserByUsername(String username) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From User Where username=:un");
         q.setParameter("un", username);
+        
         return (User) q.getSingleResult();
     }
-
+    
 }
